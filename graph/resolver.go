@@ -9,4 +9,5 @@ import "github.com/tkdn/gqlgen-tutorial/graph/model"
 
 type Resolver struct {
 	todos []*model.Todo
+	users []*model.User
 }
