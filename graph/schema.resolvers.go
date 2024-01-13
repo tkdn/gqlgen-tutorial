@@ -48,7 +48,14 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 
 // User is the resolver for the user field.
 func (r *todoResolver) User(ctx context.Context, obj *model.Todo) (*model.User, error) {
-	return &model.User{ID: obj.UserID, Name: "user " + obj.UserID}, nil
+	var user *model.User
+	for _, u := range r.users {
+		if u.ID == obj.UserID {
+			user = u
+			break
+		}
+	}
+	return user, nil
 }
 
 // Mutation returns MutationResolver implementation.
